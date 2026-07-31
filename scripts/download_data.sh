@@ -9,11 +9,11 @@ base_url="https://d37ci6vzurychx.cloudfront.net/trip-data"
 
 # dinamiza a localização do diretório data/raw e do arquivo de log
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-raw_dir="${project_root}/data/raw/"
+raw_dir="${project_root}/data/raw/${year}"
 log_file="${project_root}/data/raw/download_data.log"
 
 # cria o diretório data/raw se ainda não existir
-mkdir -p data/raw
+mkdir -p "${raw_dir}"
 
 # comando log() define log como uma função
 log() {
@@ -31,7 +31,7 @@ for month in $(seq -w 1 12); do
     destination="${raw_dir}/${filename}"
 
     # valida se o arquivo já existe. garante idempotência do código
-    if [[-f "${destination}"]]; then
+    if [[ -f "${destination}" ]]; then
         log "File already exists. Skipping ${filename}"
         continue
     fi
@@ -51,10 +51,10 @@ for month in $(seq -w 1 12); do
 done
 
 total_number_of_files=$(find "${raw_dir}" -name "*.parquet" | wc -l)
-log "Download completed. "${total_number_of_files}"/12 files available in "${raw_dir}"."
+log "Download completed. ${total_number_of_files}/12 files available in ${raw_dir}."
 
 # se a quantidade de arquivos com falha for maior q zero retorna 
-if [[${#failures[@]} -gt 0]]; then
+if [[ ${#failures[@]} -gt 0 ]]; then
     log "Failed downloas ${failures[*]}"
     exit 1
 fi

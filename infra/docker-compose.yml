@@ -10,6 +10,7 @@ services:
       - "9870:9870"
     volumes:
       - namenode:/hadoop/dfs/name
+      - ../data/raw/2025:/data/raw
 
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8

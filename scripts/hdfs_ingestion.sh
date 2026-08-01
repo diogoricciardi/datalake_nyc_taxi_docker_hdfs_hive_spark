@@ -9,7 +9,7 @@ project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 host_raw_path="${project_root}/data/raw/${year}"
 cnt_raw_path="/data/raw"
 hdfs_raw_dir="/data-lake/raw/${year}"
-log_file="${host_raw_path}/log_hdfs_ingestion.log"
+log_file="${project_root}/data/raw/log_hdfs_ingestion.log"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "${log_file}"

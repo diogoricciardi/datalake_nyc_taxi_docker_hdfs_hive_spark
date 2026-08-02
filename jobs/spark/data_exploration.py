@@ -36,7 +36,7 @@ def main():
     tecnicamente, toda transformação gera uma nova coluna que o Spark nomeia com uma representação textual da operação. O .alias(c) resolve isso
     atribuindo o nome original da coluna
     '''
-    print("\n--- Null values by column ---")
+    print("\n--- NULL VALUES BY COLUMN ---")
     null_counts = df.select(
         [f.sum(f.col(c).isNull().cast("int")).alias(c) for c in df.columns]
     )
@@ -45,7 +45,7 @@ def main():
     null_counts.show(truncate=False, vertical=True)
     
     
-    print("\n--- Descriptive Statistics ---")
+    print("\n--- DESCRIPTIVE STATISTICS ---")
     num_cols = [
         'passenger_count', 'trip_distance', 'fare_amount', 'extra', 'mta_tax','tip_amount', 'tolls_amount', 'improvement_surcharge', 
         'total_amount', 'congestion_surcharge', 'Airport_fee', 'cbd_congestion_fee'

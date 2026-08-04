@@ -7,7 +7,7 @@ spark_master_url="spark://spark-master:7077"
 job_path_in_cnt="/jobs/spark/data_transformation.py"
 
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-log_file="${project_root}/data/raw/log_hdfs_ingestion.log"
+log_file="${project_root}/data/raw/log_hdfs_transformation.log"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "${log_file}"

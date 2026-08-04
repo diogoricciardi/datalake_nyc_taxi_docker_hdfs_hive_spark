@@ -57,7 +57,7 @@ def main():
         df_distinct
             # + trip_duration_minutes: duração da corrida em minutos
             .withColumn(
-                colName = 'trip_duration.minutes',
+                colName = 'trip_duration_minutes',
                 col = f.round(
                     (f.unix_timestamp('tpep_dropoff_datetime') - f.unix_timestamp('tpep_pickup_datetime')) / 60
                     , 2
